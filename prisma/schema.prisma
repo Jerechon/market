@@ -15,8 +15,7 @@ datasource db {
 }
 
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["fullTextSearch", "fullTextIndex"]
+    provider = "prisma-client-js"
 }
 
 model Session {
@@ -29,7 +28,67 @@ model Session {
 }
 
 model User {
-    id          String    @id @default(uuid())
-    phoneNumber String   @unique
+    id          String             @id @default(uuid())
+    phoneNumber String             @unique
+    firstName   String?
+    lastName    String?
+    email       String?
     sessions    Session[]
+    addresses   Address[]
+    basket      ProductsInBasket[]
+    orders      Order[]
+}
+
+model Address {
+    id     String  @id @default(uuid())
+    adress String
+    user   User    @relation(fields: [userId], references: [id])
+    userId String  @unique
+    orders Order[]
+}
+
+model Category {
+    id       String    @id @default(uuid())
+    title    String
+    products Product[]
+}
+
+model Product {
+    id              String             @id @default(uuid())
+    title           String
+    price           Int
+    description     String?
+    category        Category           @relation(fields: [categoryId], references: [id])
+    categoryId      String
+    baskets         ProductsInBasket[]
+    productsInOrder ProductsInOrder[]
+}
+
+model ProductsInBasket {
+    user      User    @relation(fields: [userId], references: [id])
+    userId    String
+    products  Product @relation(fields: [productId], references: [id])
+    productId String
+
+    @@unique(fields: [userId, productId], name: "id")
+}
+
+model ProductsInOrder {
+    products  Product @relation(fields: [productId], references: [id])
+    productId String
+    Order     Order   @relation(fields: [orderId], references: [id])
+    orderId   String
+
+    @@unique(fields: [productId, orderId], name: "id")
+}
+
+model Order {
+    id        String            @id @default(uuid())
+    user      User              @relation(fields: [userId], references: [id])
+    userId    String
+    address   Address           @relation(fields: [addressId], references: [id])
+    addressId String
+    isPaid    Boolean           @default(false)
+    isDeleted Boolean           @default(false)
+    products  ProductsInOrder[]
 }
