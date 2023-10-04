@@ -1,0 +1,61 @@
+{
+  "name": "market-backend",
+  "version": "0.0.1",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap \"test/**/*.tests.js\"",
+    "tc": "tap --disable-coverage \"test/check/**/*.tests.js\"",
+    "start": "node ./main.js",
+    "dev": "nodemon ./main.js",
+    "prisma:push": "npx prisma db push --accept-data-loss && npm run dev && npx prisma studio"
+  },
+  "prisma": {
+    "seed": "node prisma/seeds/index.js"
+  },
+  "keywords": [],
+  "author": "Evolinue",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/auth": "^4.3.0",
+    "@fastify/autoload": "^5.7.1",
+    "@fastify/cookie": "^8.3.0",
+    "@fastify/cors": "^8.3.0",
+    "@fastify/helmet": "^10.1.1",
+    "@fastify/multipart": "^7.7.3",
+    "@fastify/sensible": "^5.2.0",
+    "@fastify/swagger": "^8.10.0",
+    "@fastify/swagger-ui": "^1.9.3",
+    "@fastify/websocket": "^7.2.0",
+    "@prisma/client": "^5.3.1",
+    "ajv": "^8.12.0",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^2.1.1",
+    "ajv-keywords": "^5.1.0",
+    "close-with-grace": "^1.2.0",
+    "dayjs": "^1.11.9",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.22.2",
+    "fastify-cli": "^5.8.0",
+    "fastify-guard": "^2.0.0",
+    "fastify-plugin": "^4.5.1",
+    "make-promises-safe": "^5.1.0",
+    "node-schedule": "^2.1.1",
+    "pino-pretty": "^10.2.0",
+    "redis": "^4.6.8"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "eslint-plugin-jsdoc": "^39.9.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.7.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^2.8.8",
+    "prisma": "^5.3.1",
+    "tap": "^18.1.5",
+    "typescript": "^5.2.2"
+  }
+}

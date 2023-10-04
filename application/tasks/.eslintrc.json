@@ -1,0 +1,22 @@
+{
+  "globals": {
+    "db": "readonly",
+    "xdb": "readonly",
+    "clearPrisma": "readonly",
+    "server": "readonly",
+    "domain": "readonly",
+    "domain2": "readonly",
+    "schemas": "readonly",
+    "seeding": "readonly",
+    "constants": "readonly",
+    "notifications": "readonly",
+    "validation": "readonly",
+    "config": "readonly",
+    "lib": "readonly",
+    "node": "readonly",
+    "store": "readonly",
+    "npm": "readonly",
+    "errors": "readonly",
+    "dayjs": "readonly"
+  }
+}

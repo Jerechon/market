@@ -1,0 +1,15 @@
+{
+  "globals": {
+    "db": "readonly",
+    "server": "readonly",
+    "domain": "readonly",
+    "schemas": "readonly",
+    "seeding": "readonly",
+    "constants": "readonly",
+    "validation": "readonly",
+    "config": "readonly",
+    "node": "readonly",
+    "dayjs": "readonly",
+    "errors": "readonly"
+  }
+}
