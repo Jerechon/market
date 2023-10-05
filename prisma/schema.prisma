@@ -37,6 +37,7 @@ model User {
     addresses   Address[]
     basket      ProductsInBasket[]
     orders      Order[]
+    Favorites   Favorites[]
 }
 
 model Address {
@@ -62,6 +63,7 @@ model Product {
     categoryId      String
     baskets         ProductsInBasket[]
     productsInOrder ProductsInOrder[]
+    Favorites       Favorites[]
 }
 
 model ProductsInBasket {
@@ -93,6 +95,15 @@ model Order {
     status     OrderStatus       @default(NOT_PAID)
     totalPrice Int               @default(0)
     products   ProductsInOrder[]
+}
+
+model Favorites {
+    user      User    @relation(fields: [userId], references: [id])
+    userId    String
+    product   Product @relation(fields: [productId], references: [id])
+    productId String
+
+    @@unique(fields: [userId, productId], name: "id")
 }
 
 enum OrderStatus {
