@@ -1,12 +1,13 @@
 async userId => {
-  const favorites = await db.favorites.findMany({
+  const products = await db.product.findMany({
     where: {
-      userId,
-    },
-    include: {
-      product: true,
+      Favorites: {
+        some: {
+          userId,
+        },
+      },
     },
   });
 
-  return favorites;
+  return products;
 };

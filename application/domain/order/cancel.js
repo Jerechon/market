@@ -5,6 +5,10 @@ async id => {
     },
   });
 
+  if (!order) {
+    throw new Error({ message: 'Заказ не найден' });
+  }
+
   if (order.status === 'PAID') {
     throw new Error({ message: 'Нельзя отменить оплаченный заказ' });
   }

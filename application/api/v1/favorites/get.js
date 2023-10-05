@@ -7,7 +7,7 @@
   },
 
   handler: async ({ session }) => {
-    const favorites = await domain.favorites.get(session.userId);
-    return { favorites };
+    const products = await domain.favorites.get(session.userId);
+    return { products };
   },
 });

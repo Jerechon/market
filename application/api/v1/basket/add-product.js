@@ -14,6 +14,7 @@
         },
         quantity: {
           type: 'number',
+          minimum: 1,
         },
       },
       examples: [

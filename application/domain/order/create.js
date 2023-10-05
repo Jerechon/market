@@ -14,39 +14,40 @@ async (userId, addressId) => {
     throw new Error({ message: 'Сначала нужно добавить товар в корзину' });
   }
 
-  const order = await db.order.create({
-    data: {
-      userId,
-      addressId,
-    },
-  });
+  //TODO сделать через reduce
+  let totalPrice = 0;
 
   for (const product of products) {
-    await db.productsInOrder.create({
-      data: {
-        orderId: order.id,
-        productId: product.productId,
-        quantity: product.quantity,
-      },
-    });
+    totalPrice = product.product.price * product.quantity;
+  }
 
-    await db.order.update({
+  const orderProducts = products.map(product => {
+    return {
+      productId: product.productId,
+      quantity: product.quantity,
+    };
+  });
+
+  const order = await db.$transaction(async tx => {
+    const order = await tx.order.create({
       data: {
-        totalPrice: { increment: product.product.price * product.quantity },
-      },
-      where: {
-        id: order.id,
         userId,
         addressId,
+        totalPrice,
+        products: {
+          create: orderProducts,
+        },
       },
     });
 
-    await db.productsInBasket.delete({
+    await tx.productsInBasket.deleteMany({
       where: {
-        id: { productId: product.productId, userId },
+        userId,
       },
     });
-  }
+
+    return order;
+  });
 
   return order;
 };
