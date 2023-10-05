@@ -2,20 +2,20 @@
   access: 'private',
 
   schema: {
-    tags: ['User'],
-    description: 'Получить список товаров по заданой категории',
+    tags: ['Product'],
+    description:
+      'Получить список товаров по фильтру, введите название категории или all что бы получить все товары',
     body: {
       type: 'object',
       additionalProperties: false,
-      required: ['categoryTitle'],
       properties: {
-        categoryTitle: {
+        filter: {
           type: 'string',
         },
       },
       examples: [
         {
-          categoryTitle: 'Техника',
+          filter: 'Техника',
         },
       ],
     },
@@ -47,8 +47,8 @@
     },
   },
 
-  handler: async ({ categoryTitle }) => {
-    const products = await domain.user.getProductsByCategory(categoryTitle);
+  handler: async ({ filter }) => {
+    const products = await domain.product.getProducts(filter);
     return { products };
   },
 });

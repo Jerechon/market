@@ -2,7 +2,7 @@
   access: 'private',
 
   schema: {
-    tags: ['User'],
+    tags: ['Product'],
     description: 'Добавить товар в корзину',
     body: {
       type: 'object',
@@ -22,6 +22,6 @@
   },
 
   handler: async ({ session, productId }) => {
-    await domain.user.addProductInBasket(session.userId, productId);
+    await domain.product.addProductInBasket(session.userId, productId);
   },
 });

@@ -2,7 +2,7 @@
   access: 'private',
 
   schema: {
-    tags: ['User'],
+    tags: ['Product'],
     description: 'Получить список категорий',
     response: {
       200: {
@@ -27,7 +27,7 @@
   },
 
   handler: async () => {
-    const categories = await domain.user.getСategories();
+    const categories = await domain.product.getСategories();
     return { categories };
   },
 });

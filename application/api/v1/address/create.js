@@ -2,7 +2,7 @@
   access: 'private',
 
   schema: {
-    tags: ['User'],
+    tags: ['Address'],
     description: 'Добавить адресс',
     body: {
       type: 'object',
@@ -22,6 +22,6 @@
   },
 
   handler: async ({ session, address }) => {
-    await domain.user.addAddress(session.userId, address);
+    await domain.address.addAddress(session.userId, address);
   },
 });

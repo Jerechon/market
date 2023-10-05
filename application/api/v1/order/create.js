@@ -2,7 +2,7 @@
   access: 'private',
 
   schema: {
-    tags: ['User'],
+    tags: ['Order'],
     description: 'Создать заказ',
     body: {
       type: 'object',
@@ -22,7 +22,7 @@
   },
 
   handler: async ({ session, addressId }) => {
-    const order = await domain.user.createOrder(session.userId, addressId);
+    const order = await domain.order.createOrder(session.userId, addressId);
     return { order };
   },
 });

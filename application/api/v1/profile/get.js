@@ -2,7 +2,7 @@
   access: 'private',
 
   schema: {
-    tags: ['User'],
+    tags: ['Profile'],
     description: 'Получить данные пользователя',
     response: {
       200: {
@@ -34,7 +34,7 @@
   },
 
   handler: async ({ session }) => {
-    const profile = await domain.user.getProfile(session.userId);
+    const profile = await domain.profile.getProfile(session.userId);
     return { profile };
   },
 });

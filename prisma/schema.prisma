@@ -43,7 +43,7 @@ model Address {
     id     String  @id @default(uuid())
     adress String
     user   User    @relation(fields: [userId], references: [id])
-    userId String  @unique
+    userId String
     orders Order[]
 }
 
@@ -88,7 +88,12 @@ model Order {
     userId    String
     address   Address           @relation(fields: [addressId], references: [id])
     addressId String
-    isPaid    Boolean           @default(false)
-    isDeleted Boolean           @default(false)
+    status    OrderStatus       @default(NOT_PAID)
     products  ProductsInOrder[]
+}
+
+enum OrderStatus {
+    PAID
+    NOT_PAID
+    DELETED
 }
