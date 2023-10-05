@@ -15,7 +15,7 @@
       },
       examples: [
         {
-          addressId: 'e7b166cb-bcc5-403f-b770-8bd0d9aa675e',
+          addressId: 'string',
         },
       ],
     },

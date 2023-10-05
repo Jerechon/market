@@ -15,7 +15,7 @@
       },
       examples: [
         {
-          filter: 'Техника',
+          filter: 'all',
         },
       ],
     },

@@ -18,7 +18,7 @@
       },
       examples: [
         {
-          productId: '64841a5d-2d71-445b-ae5e-8da83b3c34da',
+          productId: 'string',
           quantity: 1,
         },
       ],
