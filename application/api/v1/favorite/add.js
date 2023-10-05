@@ -2,8 +2,8 @@
   access: 'private',
 
   schema: {
-    tags: ['Favorites'],
-    description: 'Удалить избранный товар',
+    tags: ['Favorite'],
+    description: 'Добавить товар в избранное',
     body: {
       type: 'object',
       additionalProperties: false,
@@ -22,6 +22,6 @@
   },
 
   handler: async ({ session, productId }) => {
-    await domain.favorites.delete(session.userId, productId);
+    await domain.favorite.add(session.userId, productId);
   },
 });

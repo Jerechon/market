@@ -1,5 +1,5 @@
 async (userId, productId) => {
-  await db.favorites.delete({
+  await db.favorite.delete({
     where: {
       id: {
         productId,

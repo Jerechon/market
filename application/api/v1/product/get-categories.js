@@ -1,5 +1,5 @@
 ({
-  access: 'private',
+  access: 'public',
 
   schema: {
     tags: ['Product'],

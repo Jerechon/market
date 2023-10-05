@@ -37,7 +37,7 @@ model User {
     addresses   Address[]
     basket      ProductsInBasket[]
     orders      Order[]
-    Favorites   Favorites[]
+    Favorite    Favorite[]
 }
 
 model Address {
@@ -63,7 +63,7 @@ model Product {
     categoryId      String
     baskets         ProductsInBasket[]
     productsInOrder ProductsInOrder[]
-    Favorites       Favorites[]
+    Favorite        Favorite[]
 }
 
 model ProductsInBasket {
@@ -97,7 +97,7 @@ model Order {
     products   ProductsInOrder[]
 }
 
-model Favorites {
+model Favorite {
     user      User    @relation(fields: [userId], references: [id])
     userId    String
     product   Product @relation(fields: [productId], references: [id])

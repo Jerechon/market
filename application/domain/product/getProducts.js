@@ -1,5 +1,5 @@
-async filter => {
-  if (filter === 'all') {
+async ({ filter }) => {
+  if (filter.title === 'all') {
     const products = await db.product.findMany({
       include: { category: true },
     });
@@ -7,7 +7,7 @@ async filter => {
   }
 
   const products = await db.product.findMany({
-    where: { category: { title: filter } },
+    where: { category: { title: filter.title } },
     include: { category: true },
   });
   return products;

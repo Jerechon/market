@@ -1,7 +1,7 @@
 async userId => {
   const products = await db.product.findMany({
     where: {
-      Favorites: {
+      Favorite: {
         some: {
           userId,
         },

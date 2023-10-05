@@ -1,5 +1,5 @@
 ({
-  access: 'private',
+  access: 'public',
 
   schema: {
     tags: ['Product'],
@@ -10,12 +10,14 @@
       additionalProperties: false,
       properties: {
         filter: {
-          type: 'string',
+          type: 'object',
         },
       },
       examples: [
         {
-          filter: 'all',
+          filter: {
+            title: 'all',
+          },
         },
       ],
     },
@@ -48,7 +50,7 @@
   },
 
   handler: async ({ filter }) => {
-    const products = await domain.product.getProducts(filter);
+    const products = await domain.product.getProducts({ filter });
     return { products };
   },
 });

@@ -4,6 +4,7 @@ async userId => {
       userId,
     },
     include: {
+      address: true,
       products: true,
     },
   });

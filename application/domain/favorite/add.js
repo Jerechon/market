@@ -1,5 +1,5 @@
 async (userId, productId) => {
-  await db.favorites.create({
+  await db.favorite.create({
     data: {
       productId,
       userId,

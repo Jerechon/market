@@ -5,6 +5,10 @@ async id => {
     },
   });
 
+  if (!order) {
+    throw new Error({ message: 'Заказ не найден' });
+  }
+
   if (order.status === 'CANCELED') {
     throw new Error({ message: 'Нельзя оплатить отмененный заказ' });
   }
