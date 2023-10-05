@@ -22,7 +22,7 @@
   },
 
   handler: async ({ session, addressId }) => {
-    const order = await domain.order.createOrder(session.userId, addressId);
+    const order = await domain.order.create(session.userId, addressId);
     return { order };
   },
 });

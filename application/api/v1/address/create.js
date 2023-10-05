@@ -22,6 +22,6 @@
   },
 
   handler: async ({ session, address }) => {
-    await domain.address.addAddress(session.userId, address);
+    await domain.address.create(session.userId, address);
   },
 });

@@ -1,5 +1,14 @@
 async (userId, addressId) => {
-  const products = await db.productsInBasket.findMany({ where: { userId } });
+  const products = await db.productsInBasket.findMany({
+    where: { userId },
+    include: {
+      product: {
+        select: {
+          price: true,
+        },
+      },
+    },
+  });
 
   if (products.length === 0) {
     throw new Error({ message: 'Сначала нужно добавить товар в корзину' });
@@ -17,6 +26,18 @@ async (userId, addressId) => {
       data: {
         orderId: order.id,
         productId: product.productId,
+        quantity: product.quantity,
+      },
+    });
+
+    await db.order.update({
+      data: {
+        totalPrice: { increment: product.product.price * product.quantity },
+      },
+      where: {
+        id: order.id,
+        userId,
+        addressId,
       },
     });
 

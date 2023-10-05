@@ -3,7 +3,24 @@
 
   schema: {
     tags: ['Profile'],
-    description: 'Получить данные пользователя',
+    description: 'Обновить данные пользователя',
+    body: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['firstName', 'lastName', 'email'],
+      properties: {
+        firstName: { type: 'string' },
+        lastName: { type: 'string' },
+        email: { type: 'string' },
+      },
+      examples: [
+        {
+          firstName: 'Владислав',
+          lastName: 'Рожко',
+          email: 'vlad.ierehon@gmail.com',
+        },
+      ],
+    },
     response: {
       200: {
         type: 'object',
@@ -33,8 +50,8 @@
     },
   },
 
-  handler: async ({ session }) => {
-    const profile = await domain.profile.get(session.userId);
+  handler: async ({ session, firstName, lastName, email }) => {
+    const profile = await domain.profile.update(session.userId, firstName, lastName, email);
     return { profile };
   },
 });

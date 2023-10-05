@@ -2,8 +2,8 @@
   access: 'private',
 
   schema: {
-    tags: ['Product'],
-    description: 'Добавить товар в корзину',
+    tags: ['Basket'],
+    description: 'Удалить товар из корзины',
     body: {
       type: 'object',
       additionalProperties: false,
@@ -15,13 +15,13 @@
       },
       examples: [
         {
-          productId: '64841a5d-2d71-445b-ae5e-8da83b3c34da',
+          productId: 'string',
         },
       ],
     },
   },
 
   handler: async ({ session, productId }) => {
-    await domain.product.addProductInBasket(session.userId, productId);
+    await domain.basket.deleteProduct(session.userId, productId);
   },
 });
