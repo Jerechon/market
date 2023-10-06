@@ -1,7 +1,8 @@
-async id => {
+async (userId, id) => {
   const order = await db.order.findUnique({
     where: {
       id,
+      userId,
     },
   });
 

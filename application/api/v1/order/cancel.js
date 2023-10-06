@@ -21,7 +21,7 @@
     },
   },
 
-  handler: async ({ orderId }) => {
-    await domain.order.cancel(orderId);
+  handler: async ({ session, orderId }) => {
+    await domain.order.cancel(session.userId, orderId);
   },
 });

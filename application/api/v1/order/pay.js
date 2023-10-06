@@ -21,7 +21,7 @@
     },
   },
 
-  handler: async ({ orderId }) => {
-    await domain.order.pay(orderId);
+  handler: async ({ session, orderId }) => {
+    await domain.order.pay(session.userId, orderId);
   },
 });
