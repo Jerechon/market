@@ -27,6 +27,6 @@
   },
 
   handler: async ({ session, productId, quantity }) => {
-    await domain.basket.addProduct({ session, productId, quantity });
+    await domain.basket.addProduct({ userId: session.userId, productId, quantity });
   },
 });

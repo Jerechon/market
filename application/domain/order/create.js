@@ -15,8 +15,7 @@ async (userId, addressId) => {
   }
 
   const totalPrice = products.reduce(
-    (totalPrice, basketProduct) =>
-      totalPrice + basketProduct.product.price * basketProduct.quantity,
+    (totalPrice, { product, quantity }) => totalPrice + product.price * quantity,
     0,
   );
 
