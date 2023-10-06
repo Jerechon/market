@@ -1,4 +1,4 @@
-async ({ session, firstName, lastName, email }) => {
+async ({ userId, firstName, lastName, email }) => {
   const profile = await db.user.update({
     data: {
       firstName,
@@ -6,7 +6,7 @@ async ({ session, firstName, lastName, email }) => {
       email,
     },
     where: {
-      id: session.userId,
+      id: userId,
     },
     include: {
       addresses: true,

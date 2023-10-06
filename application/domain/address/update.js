@@ -1,10 +1,10 @@
-async ({ session, addressId, address }) => {
+async ({ userId, addressId, address }) => {
   await db.address.update({
     data: {
       address,
     },
     where: {
-      userId: session.userId,
+      userId,
       id: addressId,
     },
   });

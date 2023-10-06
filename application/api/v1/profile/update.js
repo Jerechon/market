@@ -56,7 +56,12 @@
   },
 
   handler: async ({ session, firstName, lastName, email }) => {
-    const profile = await domain.profile.update({ session, firstName, lastName, email });
+    const profile = await domain.profile.update({
+      userId: session.userId,
+      firstName,
+      lastName,
+      email,
+    });
     return { profile };
   },
 });
