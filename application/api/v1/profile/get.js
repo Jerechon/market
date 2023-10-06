@@ -23,7 +23,12 @@
                 type: 'array',
                 items: {
                   type: 'object',
-                  additionalProperties: true,
+                  additionalProperties: false,
+                  required: ['address', 'id'],
+                  properties: {
+                    address: { type: 'string' },
+                    id: { type: 'string' },
+                  },
                 },
               },
             },

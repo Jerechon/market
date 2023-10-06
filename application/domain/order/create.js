@@ -14,12 +14,11 @@ async (userId, addressId) => {
     throw new Error({ message: 'Сначала нужно добавить товар в корзину' });
   }
 
-  //TODO сделать через reduce
-  let totalPrice = 0;
-
-  for (const product of products) {
-    totalPrice = product.product.price * product.quantity;
-  }
+  const totalPrice = products.reduce(
+    (totalPrice, basketProduct) =>
+      totalPrice + basketProduct.product.price * basketProduct.quantity,
+    0,
+  );
 
   const orderProducts = products.map(product => {
     return {

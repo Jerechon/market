@@ -40,7 +40,12 @@
                 type: 'array',
                 items: {
                   type: 'object',
-                  additionalProperties: true,
+                  additionalProperties: false,
+                  required: ['address', 'id'],
+                  properties: {
+                    address: { type: 'string' },
+                    id: { type: 'string' },
+                  },
                 },
               },
             },
@@ -51,7 +56,7 @@
   },
 
   handler: async ({ session, firstName, lastName, email }) => {
-    const profile = await domain.profile.update(session.userId, firstName, lastName, email);
+    const profile = await domain.profile.update({ session, firstName, lastName, email });
     return { profile };
   },
 });

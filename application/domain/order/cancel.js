@@ -9,7 +9,7 @@ async id => {
     throw new Error({ message: 'Заказ не найден' });
   }
 
-  if (order.status === 'PAID') {
+  if (order.status === constants.ORDER_STATUSES.PAID) {
     throw new Error({ message: 'Нельзя отменить оплаченный заказ' });
   }
 

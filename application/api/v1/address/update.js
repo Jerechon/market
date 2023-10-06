@@ -26,6 +26,6 @@
   },
 
   handler: async ({ session, addressId, address }) => {
-    await domain.address.update(session.userId, addressId, address);
+    await domain.address.update({session, addressId, address});
   },
 });

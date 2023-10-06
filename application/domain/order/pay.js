@@ -9,13 +9,13 @@ async id => {
     throw new Error({ message: 'Заказ не найден' });
   }
 
-  if (order.status === 'CANCELED') {
+  if (order.status === constants.ORDER_STATUSES.CANCELED) {
     throw new Error({ message: 'Нельзя оплатить отмененный заказ' });
   }
 
   await db.order.update({
     data: {
-      status: 'PAID',
+      status: constants.ORDER_STATUSES.PAID,
     },
     where: {
       id,
